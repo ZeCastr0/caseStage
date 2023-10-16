@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: ./StageAPI
+      dockerfile: Dockerfile
+    image: stageapi:dev
+    ports:
+      - "32771:80"
+      - "32770:443"
+    container_name: StageAPI
+  
+  frontend:
+    build:
+      context: ./FrontEnd/case-stage
+      dockerfile: Dockerfile
+    image: stage-front-end
+    ports:
+      - "8080:80"
+    container_name: stage-front-end
+    depends_on:
+      - api

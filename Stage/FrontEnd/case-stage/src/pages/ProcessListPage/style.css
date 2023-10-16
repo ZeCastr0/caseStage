@@ -1,0 +1,31 @@
+.center-content {
+    display: flex;
+    flex-direction: column; /* Empilha os elementos verticalmente por padrão */
+    justify-content: center;
+    align-items: center; /* Centraliza os elementos horizontalmente por padrão */
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.grid, .form {
+    width: 100%; /* Faz ambos os elementos ocuparem a largura total por padrão */
+}
+
+/* Estilos para telas com no mínimo 768px de largura (por exemplo, tablets e desktops) */
+@media (min-width: 768px) {
+    .center-content {
+        flex-direction: row; /* Exibe os elementos lado a lado */
+        align-items: start; /* Alinha os elementos ao topo */
+    }
+
+    .grid {
+        flex: 3; /* O grid tomará 3/5 do espaço */
+        max-width: 70%; /* Defina uma largura máxima para evitar que ele fique muito largo em telas grandes */
+    }
+    
+    .form {
+        flex: 0.1; /* O formulário tomará 2/5 do espaço */
+        max-width: 30%; /* Defina uma largura máxima para evitar que ele fique muito largo em telas grandes */
+    
+    }
+}

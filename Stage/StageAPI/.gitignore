@@ -1,0 +1,35 @@
+# Arquivos e pastas gerados pelo sistema
+bin/
+obj/
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Arquivos de configuração
+appsettings.json
+appsettings.*.json
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Recycle Bin usado em compartilhamentos de arquivos
+$RECYCLE.BIN/
+
+# Arquivos de instalação do Windows
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Atalhos do Windows
+*.lnk
+
+# JetBrains Rider e outros IDEs
+.idea/
+*.rider
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt

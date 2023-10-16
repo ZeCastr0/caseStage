@@ -1,0 +1,51 @@
+BACK:
+
+
+1- CRIAR UMA IMG
+
+C:\Users\jose.silva\Desktop\Stage\StageAPI>docker build -t stageapi:dev .
+
+2- CRIAR UM CONTAINER
+
+C:\Users\jose.silva\Desktop\Stage\StageAPI>docker run -d -p 32771:80 -p 32770:443 --name StageAPI stageapi:dev
+
+3- verificar os ativos
+
+docker ps
+
+-----------------------------------------------------------------
+Recompilar:
+
+docker build -t stageapi:dev .
+
+docker stop StageAPI
+
+docker rm StageAPI
+
+docker run -d -p 32771:80 -p 32770:443 --name StageAPI stageapi:dev
+
+docker ps
+
+
+---------------------------------------------------------------------------------------------
+FRONT
+
+C:\Users\jose.silva\Desktop\Stage\FrontEnd\case-stage>docker build -t stage-front-end .
+
+C:\Users\jose.silva\Desktop\Stage\FrontEnd\case-stage>docker run -p 8080:80 stage-front-end
+
+
+
+---------------------------------------------------------------------------------------------
+
+os 2 juntos:
+
+
+
+C:\Users\jose.silva\Desktop\Stage>docker-compose build
+C:\Users\jose.silva\Desktop\Stage>docker-compose up
+
+stop:
+
+C:\Users\jose.silva\Desktop\Stage>docker-compose down
+

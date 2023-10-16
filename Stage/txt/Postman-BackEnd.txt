@@ -1,0 +1,58 @@
+Area:
+-----------------------------------------
+POST - http://localhost:32771/api/Area/filter
+
+{
+    "are_AreaId_IN": null,
+    "are_Nome_VC": null,
+    "are_Descricao_VC": null
+}
+
+
+POST -http://localhost:32771/api/Area
+
+{
+    "are_AreaId_IN": 1,
+    "are_Nome_VC": "TESTE 3",
+    "are_Descricao_VC": "TESTE DESC 3"
+}
+
+
+DELETE - http://localhost:32771/api/Area/1
+
+GET - http://localhost:32771/api/Area/
+
+
+
+
+Processo:
+-----------------------------------------
+
+POST - http://localhost:32771/api/Area/filter
+
+{
+    "prc_ProcessoId_IN": null,
+    "prc_Nome_VC": null,,
+    "prc_Descricao_VC": "null,,
+    "prc_ProcessoPaiId_IN": null,
+    "prc_AreaId_IN" : 2
+}
+
+
+
+POST - http://localhost:32771/api/processo/
+{
+    "prc_ProcessoId_IN": null,
+    "prc_Nome_VC": "teste proc",
+    "prc_Descricao_VC": "teste desc",
+    "prc_ProcessoPaiId_IN": null,
+    "prc_AreaId_IN" : 2
+}
+
+DELETE - http://localhost:32771/api/processo/1
+
+GET - http://localhost:32771/api/processo/
+
+
+  
+
