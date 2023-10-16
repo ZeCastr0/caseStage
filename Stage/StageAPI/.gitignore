@@ -9,7 +9,7 @@ obj/
 
 # Arquivos de configuração
 appsettings.json
-appsettings.*.json
+
 
 # Windows image file caches
 Thumbs.db
