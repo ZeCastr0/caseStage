@@ -1,8 +1,21 @@
 # caseStage
  Controle de Areas/Processos
 
+O projeto conta apenas com 3 paginas simples, sendo elas:
+
+**Home**
+![image](https://github.com/ZeCastr0/caseStage/assets/103376174/501ebdcd-2669-4fec-bf61-b12f0338f27c)
+
+**Processos**
+![image](https://github.com/ZeCastr0/caseStage/assets/103376174/79443829-48f0-4e54-8902-c906fcd12de5)
+
+**Areas**
+![image](https://github.com/ZeCastr0/caseStage/assets/103376174/3060381a-e8df-4f53-ba36-4b9c16dae70d)
+
+
 
 Iniciando o projeto clonando o repositorio 
+
 
 ### React:
 
