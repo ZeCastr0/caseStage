@@ -4,10 +4,10 @@
 O projeto conta apenas com 3 paginas simples, sendo elas:
 
 
-
+**HOME (Apenas visualizaçao das areas/processos)**
 ![image](https://github.com/ZeCastr0/caseStage/assets/103376174/501ebdcd-2669-4fec-bf61-b12f0338f27c)
 
-**HOME (Apenas visualizaçao das areas/processos)**
+**Processos (Cadastro/autualizaçao de Processos)**
 ![image](https://github.com/ZeCastr0/caseStage/assets/103376174/79443829-48f0-4e54-8902-c906fcd12de5)
 
 **Area (Cadastro/autualizaçao de areas)**
