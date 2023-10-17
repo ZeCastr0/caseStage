@@ -73,3 +73,5 @@ Iniciando o projeto clonando o repositorio
 Ao seguir essas etapas para ambas as partes do projeto (React e ASP.NET Core), você deve ter ambos os ambientes configurados e em execução. Se você estiver usando um ambiente de desenvolvimento integrado, como Docker com `docker-compose`, haverá etapas adicionais ou diferentes, mas, para um ambiente padrão, esses são os passos básicos.
 
 **O Codigo esta comentado para melhor entendimento**
+
+link: https://casestage.azurewebsites.net/
