@@ -1,6 +1,7 @@
 ﻿/*
  * Nome do Arquivo: ProcessoController.cs
- * Descrição: Este arquivo contém as chamadas dos memtodos relacionado a processos.
+ * Descrição: Este arquivo contém a definição do controlador de processos, responsável por gerenciar 
+ *            operações CRUD relacionadas a processos via API, incluindo inserção, atualização, exclusão e listagem.
  * Autor: José Inácio Saletti Castro Silva
  * Data de Criação: 16/10/2023
  */
@@ -20,18 +21,20 @@ namespace StageAPI.Controllers
         //Provê acesso aos dados de configuração da aplicação.
         private readonly IConfiguration _configuration;
 
-
+        // Construtor que inicializa a instância de IConfiguration.
         public ProcessoController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        // Função privada para validar o token fornecido no cabeçalho Authorization.
         private bool IsValidToken(string? token)
         {
             var validToken = _configuration["ValidToken"];
             return token == validToken;
         }
 
+        // Função privada para recuperar o token fornecido no cabeçalho Authorization.
         private string GetTokenFromHeader()
         {
             var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last() ?? string.Empty;
@@ -40,7 +43,8 @@ namespace StageAPI.Controllers
 
 
 
-        //Metodo Post insert na tabela de acordo com os parametros passados
+        // Endpoint POST para inserir ou atualizar um processo no banco de dados.
+        // Utiliza uma stored procedure chamada 'usp_InserirOuAtualizarProcesso'.
         //--------------------------------------------------------------------------------
         [HttpPost]
         public IActionResult InserirOuAtualizarProcesso([FromBody] ProcessoModel processo)
@@ -73,7 +77,8 @@ namespace StageAPI.Controllers
         }
 
 
-        //Metodo DELETE, apaga por ID
+        // Endpoint DELETE para excluir um processo por ID.
+        // Utiliza uma stored procedure chamada 'usp_ExcluirProcesso'.
         //--------------------------------------------------------------------------------
         [HttpDelete("{id}")]
         public IActionResult ExcluirProcesso(int id)
@@ -101,7 +106,8 @@ namespace StageAPI.Controllers
         }
 
 
-        //Metodo Post(Porque passsa parametros) que faz um SELECT filtrado de acordo com os parametros
+        // Endpoint POST para selecionar processos com base em um filtro.
+        // Utiliza uma stored procedure chamada 'usp_SelecionarProcesosPorFiltro'.
         //--------------------------------------------------------------------------------
         [HttpPost("filter")]
         public IActionResult SelecionarProcessosPorFiltro([FromBody] ProcessoModel processo)
@@ -147,7 +153,8 @@ namespace StageAPI.Controllers
             return Ok(list);
         }
 
-        //GET GERAL
+        // Endpoint GET para recuperar todos os processos.
+        // Utiliza uma stored procedure chamada 'usp_SelecionarProcesos'.
         //--------------------------------------------------------------------------------
         [HttpGet]
         public IActionResult SelecionarProcesos()

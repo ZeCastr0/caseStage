@@ -1,6 +1,6 @@
 ﻿/*
- * Nome do Arquivo: ProcessoController.cs
- * Descrição: Este arquivo contém as chamadas dos memtodos relacionado a Areas.
+ * Nome do Arquivo: AreaController.cs
+ * Descrição: Este arquivo provê os endpoints da API relacionados às Áreas.
  * Autor: José Inácio Saletti Castro Silva
  * Data de Criação: 16/10/2023
  */
@@ -21,17 +21,20 @@ namespace StageAPI.Controllers
         //Provê acesso aos dados de configuração da aplicação.
         private readonly IConfiguration _configuration;
 
+        // Construtor para inicialização do objeto de configuração.
         public AreaController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        // Verifica se o token fornecido é válido.
         private bool IsValidToken(string? token)
         {
             var validToken = _configuration["ValidToken"];
             return token == validToken;
         }
 
+        // Obtém o token a partir do cabeçalho da requisição.
         private string GetTokenFromHeader()
         {
             var token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last() ?? string.Empty;
@@ -40,7 +43,7 @@ namespace StageAPI.Controllers
 
 
 
-        //Metodo Post insert na tabela de acordo com os parametros passados
+        // Método POST para inserção ou atualização de uma área com base nos parâmetros fornecidos.
         //--------------------------------------------------------------------------------
 
         [HttpPost]
@@ -71,7 +74,7 @@ namespace StageAPI.Controllers
             return Ok();
         }
 
-        //Metodo DELETE, apaga por ID
+        // Método DELETE para exclusão de uma área por ID.
         //--------------------------------------------------------------------------------
         [HttpDelete("{id}")]
         public IActionResult ExcluirArea(int id)
@@ -99,7 +102,7 @@ namespace StageAPI.Controllers
             return Ok();
         }
 
-        //Metodo Post(Porque passsa parametros) que faz um SELECT filtrado de acordo com os parametros
+        // Método POST para seleção de áreas com base em filtros fornecidos.
         //--------------------------------------------------------------------------------
 
         [HttpPost("filter")]
@@ -144,7 +147,7 @@ namespace StageAPI.Controllers
             return Ok(list);
         }
 
-        //GET GERAL
+        // Método GET para seleção de todas as áreas.
         //--------------------------------------------------------------------------------
         [HttpGet]
         public IActionResult SelecionarArea()

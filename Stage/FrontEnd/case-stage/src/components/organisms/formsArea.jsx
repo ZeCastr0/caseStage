@@ -1,35 +1,48 @@
 /*
- * Caminho do Arquivo: .\Stage\FrontEnd\case-stage\src\components\organisms\formsArea.jsx
- * Descrição: Organismo reutilizável 
+ * Arquivo: .\Stage\FrontEnd\case-stage\src\components\organisms\formsArea.jsx
+ * Descrição: Este organismo reutilizável é responsável por renderizar um formulário
+ *            relacionado à "Área". Ele permite aos usuários inserir e editar informações
+ *            relacionadas à área e também possui funcionalidades para limpar o 
+ *            formulário e salvar os dados inseridos.
+ * 
  * Autor: José Inácio Saletti Castro Silva
  * Data de Criação: 16/10/2023
  */
-
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import AtomicButton from '../atoms/button.jsx';
 import FieldGroup from '../molecules/FieldGroup.jsx';
 
+/**
+ * Componente FormArea
+ * 
+ * @param {Object} initialData - Dados iniciais para preencher o formulário.
+ * @param {Function} onSave - Função callback invocada para salvar os dados do formulário.
+ * @returns {ReactElement} Retorna um elemento React contendo o formulário para Área.
+ */
 export default function FormArea({ initialData, onSave }) {
   const [formData, setFormData] = React.useState(initialData || {});
 
-   //O efeito tem o objetivo de atualizar o estado formData toda vez que a propriedade initialData for modificada.
+  // Atualiza formData toda vez que initialData é alterado.
   React.useEffect(() => {
     setFormData(initialData || {});
   }, [initialData]);
 
-
-  //Atualiza o valor do formData com base nas mudanças do campo
+  /**
+   * Atualiza formData com base no input do usuário.
+   * 
+   * @param {Event} event - Evento originado do campo alterado.
+   */
   const handleChange = (event) => {
     const { id, value } = event.target;
     setFormData(prevState => ({ ...prevState, [id]: value }));
   };
 
-  //Limpa os campos do formulário.
+  // Limpa os campos do formulário.
   const handleClear = () => setFormData({});
 
-  //Invoca a função de salvar do componente pai com os dados atuais do formulário.
+  //Salva os dados do formulário utilizando o callback onSave.
   const handleSave = async () => {
     await onSave(formData);
   };
@@ -75,8 +88,6 @@ export default function FormArea({ initialData, onSave }) {
             Novo
           </AtomicButton>
         </div>
-
-
       </div>
     </Box>
   );

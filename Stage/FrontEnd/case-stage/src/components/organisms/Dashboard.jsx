@@ -1,20 +1,26 @@
-/*
- * Caminho do Arquivo: .\Stage\FrontEnd\case-stage\src\components\organisms\Dashboard.jsx
- * Descrição: Organismo reutilizável que representa um painel de controle mostrando contagens de áreas e processos.
+/**
+ * Arquivo: .\Stage\FrontEnd\case-stage\src\components\organisms\Dashboard.jsx
+ * Descrição: Este componente representa um "organismo" reutilizável chamado Dashboard.
+ *            Ele é projetado para exibir informações estatísticas sobre áreas e processos
+ *            através de cartões visualmente atrativos. Cada cartão mostra o número total
+ *            de processos ou áreas.
+ * 
  * Autor: José Inácio Saletti Castro Silva
  * Data de Criação: 16/10/2023
+ *
+ * Componente Dashboard.
+ * 
+ * Este componente renderiza um painel de controle que apresenta o número total de 
+ * processos e áreas. Estas estatísticas são visualizadas através de cartões (DashboardCard).
+ * 
+ * @param {number} areaCount - O número total de áreas.
+ * @param {number} processCount - O número total de processos.
+ * @returns {ReactElement} Retorna um elemento React representando o painel de controle.
  */
 
 import React from 'react';
 import DashboardCard from '../molecules/DashboardCard';
 import './style/Dashboard.css'; 
-
-/*
- * Componente Dashboard para exibir o número de áreas e processos.
- * Este componente renderiza um painel de controle que apresenta o número total de 
- * processos e áreas através de cartões (DashboardCard). Essas contagens são 
- * passadas como propriedades para o componente.
- */
 
 const Dashboard = ({ areaCount, processCount }) => {
   return (

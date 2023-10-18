@@ -1,0 +1,79 @@
+### Azure Container Registry (ACR)
+
+1. **Criar um Azure Container Registry**
+   - Faça login no Portal Azure.
+   - No menu à esquerda, selecione "Criar um recurso".
+   - Busque por "Container Registry" e selecione "Container Registry" na lista de resultados.
+   - Clique em "Criar".
+   - Preencha os campos necessários: Nome do Registro, Assinatura, Grupo de Recursos, Localização, etc.
+   - Selecione "Revisar + criar" e, depois, "Criar" para finalizar a criação do registro.
+
+Se precisar de acesso ao ACR fora da CLI do Azure (por exemplo, em um ambiente CI/CD):
+
+2. **Obtenha as credenciais do ACR**:
+   - No Portal Azure, navegue até o seu ACR.
+   - No menu à esquerda, selecione "Chaves de acesso".
+   - Aqui, você verá dois usuários (usuário admin e um usuário somente leitura). Você também verá senhas associadas a esses usuários.
+
+3. **Autentique Docker com ACR usando essas credenciais**:
+   - Execute: `docker login <acrName>.azurecr.io -u <acrUsername> -p <acrPassword>`
+   - Por exemplo: `docker login myregistry.azurecr.io -u myregistry -p <password>`
+
+Feito isso sguir o passo a passo no cmd, no diretorio do dockerfile
+Login:
+
+docker login <acrName>.azurecr.io -u <acrUsername> -p <acrPassword>
+--------------------------------
+API:
+Marcando a img:
+
+docker tag <nome_da_imagem_local>:<tag_local> <acr_name>.azurecr.io/<nome_da_imagem_no_acr>:<tag_no_acr>
+	exemplo:
+		docker tag stageapi:dev stageapi.azurecr.io/stageapi:dev
+
+subindo a img:
+docker push <acrName>.azurecr.io/<imageName>:<versionTag>
+	exemplo:
+		docker push stageapi.azurecr.io/stageapi:dev
+---------------------------------
+
+Para rodar um container:
+
+Após fazer o push da sua imagem para o Azure Container Registry (ACR), você tem várias opções para executar o contêiner no Azure. Uma das opções mais comuns é usar o Azure App Service, especialmente se for uma aplicação web ou uma API.
+
+
+### 1. Crie um Web App para Contêineres no Azure App Service (aplicação web)
+
+1. Faça login no Portal Azure.
+2. No menu à esquerda, selecione "Criar um recurso".
+3. Busque por "Web App" e selecione "Web App" na lista de resultados.
+4. Clique em "Criar".
+5. Preencha os campos necessários:
+   - Assinatura: Escolha sua assinatura do Azure.
+   - Grupo de recursos: Selecione um grupo de recursos existente ou crie um novo.
+   - Nome: Escolha um nome único para o seu aplicativo.
+   - Publicar: Selecione "Contêiner do Docker".
+   - Sistema operacional: Escolha entre Linux ou Windows, dependendo da sua imagem.
+6. Em "Região", selecione a localização geográfica para o seu aplicativo.
+7. Em "Plano do App Service", selecione seu plano existente ou crie um novo. O plano determina os recursos e o preço do seu App Service.
+8. Na seção "Orquestrador", selecione "Único contêiner".
+9. No campo "Origem da imagem", selecione "Azure Container Registry".
+10. Selecione seu registro, imagem e tag apropriados.
+11. Clique em "Revisar + criar" e, em seguida, "Criar" para criar o App Service.
+
+### 2. Acesse seu App Service
+
+Uma vez criado, você pode acessar o App Service e ver o contêiner em execução. O URL será algo como `http://<seu_nome_de_app>.azurewebsites.net`.
+
+E no caso de API lembrar de colocar o IP Virtual nas regras firewall
+
+### 3. (Opcional) Configurações adicionais
+
+Dentro das configurações do App Service, você pode:
+
+- Configurar variáveis de ambiente.
+- Configurar uma string de conexão (por exemplo, se a sua aplicação precisa se conectar a um banco de dados).
+- Ajustar o tamanho e a escala da instância.
+- Configurar domínios personalizados e certificados SSL.
+- E outras configurações relacionadas ao desempenho, segurança e monitoramento.
+

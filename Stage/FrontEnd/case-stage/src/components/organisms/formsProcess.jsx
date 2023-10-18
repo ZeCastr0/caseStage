@@ -1,6 +1,11 @@
 /*
- * Caminho do Arquivo: .\Stage\FrontEnd\case-stage\src\components\organisms\formsProcess.jsx
- * Descrição: Organismo reutilizável 
+ * Arquivo: .\Stage\FrontEnd\case-stage\src\components\organisms\formsProcess.jsx
+ * Descrição: Este organismo reutilizável é responsável por renderizar um formulário
+ *            relacionado ao "Processo". Permite aos usuários inserir e editar informações
+ *            de processos e também possui funcionalidades para limpar o 
+ *            formulário e salvar os dados inseridos. Ele também carrega dados 
+ *            relacionados a processos e áreas de uma API.
+ * 
  * Autor: José Inácio Saletti Castro Silva
  * Data de Criação: 16/10/2023
  */
@@ -13,7 +18,12 @@ import AtomicButton from '../atoms/button.jsx';
 import FieldGroup from '../molecules/FieldGroup.jsx';
 import DropdownFieldGroup from '../molecules/DropdownFieldGroup.jsx';
 
-// Hook personalizado para carregar processos
+/**
+ * Hook para carregar dados de processos
+ * 
+ * @param {any} refreshKey - Chave de atualização para recarregar os processos.
+ * @returns {Array} Lista de processos.
+ */
 const useProcesses = (refreshKey) => {
   const [processes, setProcesses] = React.useState([]);
 
@@ -33,7 +43,11 @@ const useProcesses = (refreshKey) => {
   return processes;
 };
 
-// Hook personalizado para carregar áreas
+/**
+ * Hook para carregar dados de áreas.
+ * 
+ * @returns {Array} Lista de áreas.
+ */
 const useAreas = () => {
   const [areas, setAreas] = React.useState([]);
 
@@ -53,38 +67,46 @@ const useAreas = () => {
   return areas;
 };
 
+/**
+ * Componente FormProcess
+ * 
+ * @param {Object} initialData - Dados iniciais para preencher o formulário.
+ * @param {Function} onSave - Função callback invocada para salvar os dados do formulário.
+ * @param {any} refreshKey - Chave de atualização para recarregar os dados.
+ * @returns {ReactElement} Retorna um elemento React contendo o formulário para Processo.
+ */
 export default function FormProcess({ initialData, onSave, refreshKey }) {
   const [formData, setFormData] = React.useState(initialData || {});
   const areas = useAreas();
   const processes = useProcesses(refreshKey);
 
-  //O efeito tem o objetivo de atualizar o estado formData toda vez que a propriedade initialData for modificada.
+  // Atualiza formData toda vez que initialData é alterado.
   React.useEffect(() => {
     setFormData(initialData || {});
   }, [initialData]);
 
-  //Atualiza o valor do formData com base nas mudanças do campo.
+  // Atualiza formData com base no input do usuário.
   const handleChange = (event) => {
     const { id, value } = event.target;
     setFormData(prevState => ({ ...prevState, [id]: value }));
   };
-  
-  //Atualiza o campo de área com base na seleção do dropdown.
+
+  // Atualiza o campo de área com base na seleção do dropdown.
   const handleAreaChange = (event) => {
     const selectedName = event.target.value;
     const matchingArea = areas.find(area => area.Nome === selectedName);
     setFormData(prevState => ({ ...prevState, Area: matchingArea ? matchingArea.Area : "" }));
   };
 
-  //Atualiza o campo de processo pai com base na seleção do dropdown.
+  // Atualiza o campo de processo pai com base na seleção do dropdown.
   const handleProcessChange = (event) => {
     setFormData(prevState => ({ ...prevState, ProcessoPai: event.target.value }));
   };
 
-  //Limpa os campos do formulário.
+  // Limpa os campos do formulário.
   const handleClear = () => setFormData({});
 
-  //Invoca a função de salvar do componente pai com os dados atuais do formulário.
+  // Salva os dados do formulário utilizando o callback onSave.
   const handleSave = async () => {
     await onSave(formData);
   };
@@ -152,7 +174,6 @@ export default function FormProcess({ initialData, onSave, refreshKey }) {
             Novo
           </AtomicButton>
         </div>
-
       </div>
     </Box>
   );
